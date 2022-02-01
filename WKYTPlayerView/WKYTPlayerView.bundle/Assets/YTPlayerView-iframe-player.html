@@ -81,7 +81,12 @@
         }
         window.location.href = 'ytplayer://onError?data=' + event.data;
     }
-    
+   function pip() {
+     var video = document.getElementById('player').contentDocument.querySelector('video');
+        if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === "function") {
+            video.webkitSetPresentationMode(video.webkitPresentationMode === "picture-in-picture" ? "inline" : "picture-in-picture");
+        }
+     }
     window.onresize = function() {
         player.setSize(window.innerWidth, window.innerHeight);
     }
