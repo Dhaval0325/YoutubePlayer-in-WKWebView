@@ -81,6 +81,15 @@
         }
         window.location.href = 'ytplayer://onError?data=' + event.data;
     }
+   function addPIPListners() {
+        var video = document.getElementById('player').contentDocument.querySelector('video');
+        video.addEventListener("enterpictureinpicture", (event) => {
+            window.webkit.messageHandlers.ENTER_PIP.postMessage("PIP Started");
+        });
+        video.addEventListener("leavepictureinpicture", (event) => {
+            window.webkit.messageHandlers.LEAVE_PIP.postMessage("PIP Ended");
+        });
+    }
    function pip() {
      var video = document.getElementById('player').contentDocument.querySelector('video');
         if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === "function") {
